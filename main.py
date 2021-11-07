@@ -5,7 +5,7 @@ from time import sleep
 config_ini = configparser.ConfigParser()
 config_ini.read('config.ini', encoding='utf-8')
 
-SEARCH_ENGINE_LIST = config_ini['DEFAULT']['SEARCH_ENGINE_LIST']
+SEARCH_ENGINE_LIST = json.loads(config_ini.get('DEFAULT', 'SEARCH_ENGINE_LIST'))
 DOMAIN = [config_ini['WEBSITE1']['DOMAIN'], config_ini['WEBSITE2']['DOMAIN']]
 API_KEY = [config_ini['WEBSITE1']['API_KEY'], config_ini['WEBSITE2']['API_KEY']]
 
@@ -19,12 +19,13 @@ urls = args.urls
 for engine in SEARCH_ENGINE_LIST:
     ENDPOINT = f"https://{engine}/indexnow"
     n = 0 if host == DOMAIN[0] else 1
+    api = API_KEY[n]
     for url in urls:
         requests.post(
-            ENDPOINT,data=json.dumps({
+            ENDPOINT, data=json.dumps({
                 "host" : host,
-                "key" : API_KEY[n],
-                "keyLocation" : f"https://{host}/{API_KEY[n]}.txt",
+                "key" : api,
+                "keyLocation" : f"https://{host}/{api}.txt",
                 "urlList" : [url] 
             })
         )

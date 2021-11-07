@@ -12,7 +12,7 @@
 
 ```
 [DEFAULT]
-SEARCH_ENGINE_LIST = www.bing.com,yandex.com
+SEARCH_ENGINE_LIST = ["www.bing.com","yandex.com"]
 
 [WEBSITE1]
 DOMAIN = www.example.com
