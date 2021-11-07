@@ -1,10 +1,12 @@
 # README
 
-## directory
+## tree
 
+```
 ├── README.md
 ├── config.ini
 └── main.py
+```
 
 ## config.ini
 
