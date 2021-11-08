@@ -1,5 +1,11 @@
 # README
 
+## sample request
+
+```
+python main.py --host www.example.com --urls https://www.example.com/page1/ https://www.example.com/page2/ ...
+```
+
 ## tree
 
 ```
