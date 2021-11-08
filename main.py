@@ -16,11 +16,11 @@ args = parser.parse_args()
 
 host = args.host
 urls = args.urls
-for engine in SEARCH_ENGINE_LIST:
-    ENDPOINT = f"https://{engine}/indexnow"
+for url in urls:    
     n = 0 if host == DOMAIN[0] else 1
     api = API_KEY[n]
-    for url in urls:
+    for engine in SEARCH_ENGINE_LIST:
+        ENDPOINT = f"https://{engine}/indexnow"
         requests.post(
             ENDPOINT, data=json.dumps({
                 "host" : host,
@@ -29,4 +29,4 @@ for engine in SEARCH_ENGINE_LIST:
                 "urlList" : [url] 
             })
         )
-        sleep(5)
+    sleep(5)
