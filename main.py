@@ -1,5 +1,4 @@
 import configparser, requests, json, argparse
-from time import sleep
 
 # load config settings
 config_ini = configparser.ConfigParser()
