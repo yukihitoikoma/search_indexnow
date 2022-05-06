@@ -17,9 +17,6 @@ python main.py --host www.example.com --urls https://www.example.com/page1/ http
 ## config.ini
 
 ```
-[DEFAULT]
-SEARCH_ENGINE_LIST = ["www.bing.com","yandex.com"]
-
 [WEBSITE1]
 DOMAIN = www.example.com
 API_KEY = ***
