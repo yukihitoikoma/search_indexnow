@@ -5,8 +5,7 @@ config_ini = configparser.ConfigParser()
 config_ini.read('config.ini', encoding='utf-8')
 
 ENDPOINT = "https://api.indexnow.org/indexnow"
-DOMAIN = [config_ini['WEBSITE1']['DOMAIN'], config_ini['WEBSITE2']['DOMAIN']]
-API_KEY = [config_ini['WEBSITE1']['API_KEY'], config_ini['WEBSITE2']['API_KEY']]
+SETTINGS = {config_ini['WEBSITE1']['DOMAIN']: config_ini['WEBSITE1']['API_KEY'], config_ini['WEBSITE2']['DOMAIN']: config_ini['WEBSITE2']['API_KEY']}
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--host')
@@ -16,13 +15,12 @@ args = parser.parse_args()
 host = args.host
 urls = args.urls
 
-n = 0 if host == DOMAIN[0] else 1
-api = API_KEY[n]
+api = SETTINGS[host]
 requests.post(
     ENDPOINT, data=json.dumps({
         "host" : host,
         "key" : api,
-        "keyLocation" : f"https://{host}/{api}.txt",
+        "keyLocation" : "https://{0}/{1}.txt".format(host, api),
         "urlList" : urls
     })
 )
